@@ -54,6 +54,13 @@ export const streamPrescriptionPdf = (data: PrescriptionPdfData, res: Response) 
     `attachment; filename="prescription-${data.invoiceLikeId}.pdf"`
   );
 
+  doc.on('error', (err) => {
+    console.error('PDF generation error:', err);
+    if (!res.headersSent) {
+      res.status(500).json({ success: false, message: 'Failed to generate prescription PDF' });
+    }
+  });
+
   doc.pipe(res);
 
   const { appointment } = data;
