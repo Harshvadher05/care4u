@@ -524,7 +524,7 @@ export const getHospitalAppointmentsService = async (
 
   const now = new Date();
   return appointments.map((a) => {
-    let mappedStatus = a.status;
+    let mappedStatus: string = a.status;
     const endTime = new Date(a.appointmentEndTime);
     if (
       now > endTime &&
