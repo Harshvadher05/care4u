@@ -16,12 +16,12 @@ export const register = async (req: Request, res: Response) => {
             throw new ValidationError(parseGroup.error._zod.def[0]?.message)
         }
 
-        const hospitalGroup = await hospitalGroupService.create(parseGroup.data);
+        const hospitalGroup = await hospitalGroupService.create({ name: parseGroup.data.name, logo: parseGroup.data.logo ?? null });
         if(!hospitalGroup) {
             throw new DatabaseError('Error while creating hospitalgroup');
         }
         response = {
-            message: 'Hotel Group created successfully',
+            message: 'Hospital Group created successfully',
             status: 201,
             success: true
         }
