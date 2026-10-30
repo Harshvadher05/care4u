@@ -15,9 +15,9 @@ export const PaymentStatusSchema = z.enum([
 ]);
 
 export const PaymentDetailsSchema = z.object({
-  transactionId: z.string().min(1).optional(),
-  cardNumber: z.string().min(1).optional(),
-  upiId: z.string().min(1).optional(),
+  transactionId: z.string().trim().min(1).optional(),
+  cardNumber: z.string().trim().min(1).optional(),
+  upiId: z.string().trim().min(1).optional(),
 });
 
 export const CreatePaymentSchema = z
