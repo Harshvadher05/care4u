@@ -50,8 +50,8 @@ async function handleLogin(e) {
         }
 
         // Set cookies directly in the frontend
-        document.cookie = `accessToken=${result.data.accessToken}; path=/; max-age=86400`;      
-        document.cookie = `refreshToken=${result.data.refreshToken}; path=/; max-age=604800`; 
+        document.cookie = `accessToken=${result.data.accessToken}; path=/; max-age=86400; SameSite=Lax`;      
+        document.cookie = `refreshToken=${result.data.refreshToken}; path=/; max-age=604800; SameSite=Lax`; 
 
         // Redirect
         if (result.data.role == 'PATIENT') {
