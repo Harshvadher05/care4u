@@ -30,5 +30,6 @@ export const addressSchema = z.object({
 
   pincode: z
     .string()
+    .trim()
     .regex(/^\d{6}$/, "Pincode must be 6 digits"),
 });
