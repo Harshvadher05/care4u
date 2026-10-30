@@ -102,7 +102,7 @@ export const verifyRefreshToken = (token: string): JwtPayload => {
     return decodedToken;
   } catch (error: any) {
     if (error.message == 'jwt expired') {
-      throw new TokenExpiredError('Captcha is expired');
+      throw new TokenExpiredError('Refresh token is expired');
     }
     throw new InvalidTokenError(error.message);
   }
