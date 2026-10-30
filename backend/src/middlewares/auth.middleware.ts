@@ -1,19 +1,6 @@
 // middleware/auth.middleware.ts
-import {type Request, type Response, type NextFunction } from 'express';
+import { type Request, type Response, type NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-
-//  Extend Express Request to include user payload
-declare global {
-  namespace Express {
-    interface Request {
-      user?: {
-        userId: bigint;
-        doctorId: bigint;
-        role: string;
-      };
-    }
-  }
-}
 
 export const checkToken = (req: Request, res: Response, next: NextFunction): void => {
   try {
@@ -25,10 +12,11 @@ export const checkToken = (req: Request, res: Response, next: NextFunction): voi
       return;
     }
 
-    // ✅ Decode and verify token
-    const decoded = jwt.verify(token, process.env.ACCESS_JWT_SECRET ) as {
+    // Decode and verify token
+    const decoded = jwt.verify(token, process.env.ACCESS_JWT_SECRET as string) as {
       userId: bigint;
-      email: string;
+      doctorId?: bigint;
+      email?: string;
       role: string;
     };
 
@@ -37,4 +25,4 @@ export const checkToken = (req: Request, res: Response, next: NextFunction): voi
   } catch (error) {
     res.status(401).json({ message: 'Unauthorized - Invalid token' });
   }
-};         
+};
