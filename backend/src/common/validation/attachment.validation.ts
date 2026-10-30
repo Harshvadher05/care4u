@@ -8,10 +8,12 @@ export const AttachmentTypeSchema = z.enum([
 export const CreateAttachmentSchema = z.object({
   url: z
     .string()
+    .trim()
     .url("Attachment URL must be a valid URL"),
 
   secretKey: z
     .string()
+    .trim()
     .nullable()
     .optional(),
 
@@ -19,7 +21,5 @@ export const CreateAttachmentSchema = z.object({
 
   prescriptionId: z
     .coerce
-    .number()
-    .int()
-    .positive("Prescription ID must be a positive number"),
+    .bigint({ message: "Prescription ID must be a valid number" }),
 });
