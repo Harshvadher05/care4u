@@ -9,4 +9,6 @@ export const CreateHospitalGroupSchema = z.object({
 
     logo: z
         .string()
+        .trim()
+        .optional()
 });
