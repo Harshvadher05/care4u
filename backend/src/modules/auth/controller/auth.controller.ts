@@ -52,11 +52,9 @@ export const login = async (req: Request, res: Response) => {
       const patientId = await patientService.getPatientId(user.id);
       userId = patientId;
     } else if(user.role == 'ADMIN') {
-      console.log('here');
       const adminData = await adminService.getAdminId(user.id);
       userId = adminData;
     } else if (user.role == 'DOCTOR') {
-      console.log('doctor');
       
       const doctorId = await doctorService.getDoctorId(user.id);
       userId = doctorId;
