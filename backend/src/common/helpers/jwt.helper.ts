@@ -81,7 +81,7 @@ export const verifyToken = (token: string): JwtPayload => {
     const secretKey = process.env.ACCESS_JWT_SECRET;
     const decodedToken = jwt.verify(token, secretKey);
     if (!decodedToken || typeof decodedToken == 'string') {
-      throw new InvalidTokenError('Invalid Data insied token');
+      throw new InvalidTokenError('Invalid Data inside token');
     }
     return decodedToken;
   } catch (error: any) {
@@ -97,7 +97,7 @@ export const verifyRefreshToken = (token: string): JwtPayload => {
     const secretKey = process.env.REFRESH_JWT_SECRET;
     const decodedToken = jwt.verify(token, secretKey);
     if (!decodedToken || typeof decodedToken == 'string') {
-      throw new InvalidTokenError('Invalid Data insied token');
+      throw new InvalidTokenError('Invalid Data inside token');
     }
     return decodedToken;
   } catch (error: any) {
