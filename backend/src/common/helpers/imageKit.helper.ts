@@ -15,20 +15,19 @@ export const uploadImage = async (
         });
         return {
             url: response.url,
-            secretKey: response.fileId
-        }
+            secretKey: response.fileId,
+        };
     } catch (error) {
         console.error(error);
         throw new InternalServerError('Error while uploading file');
     }
 };
 
-
-export const deleteFile = async (fieledId: string) => {
+export const deleteFile = async (fileId: string): Promise<void> => {
     try {
-        await imageKit.deleteFile(fieledId);
+        await imageKit.deleteFile(fileId);
     } catch (error) {
         console.error(error);
         throw new InternalServerError('Error while deleting file');
     }
-}
+};
