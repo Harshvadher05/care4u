@@ -8,11 +8,9 @@
         <h1 class="font-bold text-lg hidden sm:block text-slate-800">Doctor Portal</h1>
     </div>
 
-    
-
     <!-- Right Header Actions -->
     <div class="flex items-center gap-3">
-        <button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors relative">
+        <button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors relative" aria-label="Notifications">
             <span class="material-symbols-outlined">notifications</span>
             <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
         </button>
@@ -24,7 +22,11 @@
             class="flex items-center gap-2 hover:bg-slate-50 p-1 pr-2 rounded-full border border-transparent hover:border-slate-200 transition-all">
             <div
                 class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center overflow-hidden">
-                <span class="material-symbols-outlined text-[20px]">person</span>
+                <% if (typeof doctor !== 'undefined' && doctor && doctor.profilePhoto) { %>
+                    <img src="<%= doctor.profilePhoto %>" alt="Doctor Avatar" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/images/default-avatar.svg';">
+                <% } else { %>
+                    <span class="material-symbols-outlined text-[20px]">person</span>
+                <% } %>
             </div>
             <span class="text-sm font-medium text-slate-700 hidden sm:block">Profile</span>
         </button>
