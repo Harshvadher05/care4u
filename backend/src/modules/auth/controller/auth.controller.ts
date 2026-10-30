@@ -42,7 +42,7 @@ export const login = async (req: Request, res: Response) => {
     if (!user) {
       throw new NotFoundError('Invalid credentials');
     }
-    const isValid = await argon2.verify(user.hashedPassword,body.password);
+    const isValid = await argon2.verify(user.hashedPassword, body.password);
     if (!isValid) {
       throw new NotFoundError('Invalid Credentials');
     }
@@ -60,7 +60,7 @@ export const login = async (req: Request, res: Response) => {
       userId = doctorId;
     } else if (user.role == 'STAFF') {
       const staffData = await staffService.getStaffIdByCredentialIdService(user.id);
-      userId = staffData.id
+      userId = staffData.id;
     } else if (user.role == 'SUPER_ADMIN') {
       userId = user.id;
     }
