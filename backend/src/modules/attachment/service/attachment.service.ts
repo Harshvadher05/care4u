@@ -30,7 +30,10 @@ export const remove = async (id: bigint) => {
             throw new DatabaseError('Error while deleting attachment');
         }
         return deletedAttachment;
-    } catch (error) {
+    } catch (error: any) {
+        if (error?.code === 'P2025') {
+            throw new NotFoundError('Attachment not found');
+        }
         console.error(error);
         throw new DatabaseError('Error while deleting attachment');
     }
