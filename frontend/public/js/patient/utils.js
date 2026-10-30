@@ -85,7 +85,8 @@ function buildClinicDateTime(dateStr, timeStr) {
 
 // Bind global logout button event
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("logoutBtn")?.addEventListener("click", () => {
+    const logoutTarget = document.getElementById("logoutBtn") || document.getElementById("logout-btn");
+    logoutTarget?.addEventListener("click", () => {
         deleteAllCookies();
         window.location.href = "/auth/login";
     });
