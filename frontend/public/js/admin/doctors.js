@@ -57,7 +57,7 @@ async function confirmDeactivateDoctor() {
     }
 
     try {
-        const res = await fetch(`http://localhost:3004/api/v1/doctor/${activeCredentialId}/deactive`, {
+        const res = await fetch(`${(window.API_BASE_URL || "http://localhost:3004/api/v1")}/doctor/${activeCredentialId}/deactive`, {
             method: "patch",
             headers: {
                 "Authorization": `Bearer ${token}`
