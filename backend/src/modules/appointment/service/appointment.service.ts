@@ -113,7 +113,7 @@ export const checkAppointmentTime = async (
     const appointmentStatus =
       await prisma.appointment.findUnique({
         where: {
-          id: appointmentId as any,
+          id: BigInt(appointmentId),
         },
       });
 
