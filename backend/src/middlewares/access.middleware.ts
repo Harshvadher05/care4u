@@ -5,13 +5,15 @@ export const checkPermission = (permissions: string[]) => {
     return (req: Request, res: Response, next: NextFunction) => {
         try {  
             const permission = req.user?.role;
-            if(!permission) {
+            if (!permission) {
                 throw new UnauthorizedError('Access Denied');
             }
             const hasPermission = permissions.includes(permission);
             if (!hasPermission) {
                 return res.status(403).json({
+                    status: 403,
                     message: 'Permission denied',
+                    success: false,
                 });
             }
             next();
