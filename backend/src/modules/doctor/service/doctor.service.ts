@@ -57,11 +57,8 @@ export const updateDoctor = async (doctorId: number | bigint, newDoctorValue: an
       return { doctor, new_doctor_degrees, new_specialities };
     });
   } catch (error) {
-    if (error instanceof InternalServerError) {
-      throw new InternalServerError(error.message);
-    }
-    if (error instanceof NotFoundError) {
-      throw new NotFoundError(error.message);
+    if (error instanceof BadRequestError || error instanceof NotFoundError || error instanceof InternalServerError) {
+      throw error;
     }
     throw new InternalServerError('Error while fetching Doctor');
   }
@@ -90,11 +87,8 @@ export const getDoctorById = async (doctorId: number | bigint) => {
     });
     return doctor ?? null;
   } catch (error) {
-    if (error instanceof InternalServerError) {
-      throw new InternalServerError(error.message);
-    }
-    if (error instanceof NotFoundError) {
-      throw new NotFoundError(error.message);
+    if (error instanceof BadRequestError || error instanceof NotFoundError || error instanceof InternalServerError) {
+      throw error;
     }
     throw new InternalServerError('Error while fetching Doctor');
   }
@@ -115,11 +109,8 @@ export const getDoctorId = async (credentialId: bigint) => {
     }
     return doctor.id;
   } catch (error) {
-    if (error instanceof InternalServerError) {
-      throw new InternalServerError(error.message);
-    }
-    if (error instanceof NotFoundError) {
-      throw new NotFoundError(error.message);
+    if (error instanceof BadRequestError || error instanceof NotFoundError || error instanceof InternalServerError) {
+      throw error;
     }
     throw new InternalServerError('Error while fetching Doctor');
   }
@@ -163,11 +154,8 @@ export const getAllAppointment = async (doctorId: number) => {
     return (appointments ?? []).map(mapAppointmentStatus);
   } catch (error) {
     console.error("Error in getAllAppointment Prisma query:", error);
-    if (error instanceof InternalServerError) {
-      throw new InternalServerError(error.message);
-    }
-    if (error instanceof NotFoundError) {
-      throw new NotFoundError(error.message);
+    if (error instanceof BadRequestError || error instanceof NotFoundError || error instanceof InternalServerError) {
+      throw error;
     }
     throw new InternalServerError('Error while fetching Doctor');
   }
@@ -193,11 +181,8 @@ export const getUpComingLeaves = async (doctorId: number) => {
     });
     return leave ?? null;
   } catch (error) {
-    if (error instanceof InternalServerError) {
-      throw new InternalServerError(error.message);
-    }
-    if (error instanceof NotFoundError) {
-      throw new NotFoundError(error.message);
+    if (error instanceof BadRequestError || error instanceof NotFoundError || error instanceof InternalServerError) {
+      throw error;
     }
     throw new InternalServerError('Error while fetching Doctor');
   }
@@ -257,11 +242,8 @@ export const createDoctor = async (doctorData: IRegisterDoctorDto) => {
       return { doctor, doctor_degrees, doctor_specialities };
     });
   } catch (error: any) {
-    if (error instanceof InternalServerError) {
-      throw new InternalServerError(error.message);
-    }
-    if (error instanceof NotFoundError) {
-      throw new NotFoundError(error.message);
+    if (error instanceof BadRequestError || error instanceof NotFoundError || error instanceof InternalServerError) {
+      throw error;
     }
     console.log(error);
     throw new InternalServerError('Error while fetching Doctor');
@@ -280,11 +262,8 @@ export const getSchedule = async (doctorId: bigint) => {
     });
     return schedule;
   } catch (error: any) {
-    if (error instanceof InternalServerError) {
-      throw new InternalServerError(error.message);
-    }
-    if (error instanceof NotFoundError) {
-      throw new NotFoundError(error.message);
+    if (error instanceof BadRequestError || error instanceof NotFoundError || error instanceof InternalServerError) {
+      throw error;
     }
     console.log(error);
     throw new InternalServerError('Error while fetching Doctor');
@@ -307,11 +286,8 @@ export const updateSchedule = async (doctorId: number, newTime: any) => {
     });
     return schedule;
   } catch (error: any) {
-    if (error instanceof InternalServerError) {
-      throw new InternalServerError(error.message);
-    }
-    if (error instanceof NotFoundError) {
-      throw new NotFoundError(error.message);
+    if (error instanceof BadRequestError || error instanceof NotFoundError || error instanceof InternalServerError) {
+      throw error;
     }
     console.log(error);
     throw new InternalServerError('Error while fetching Doctor');
@@ -330,11 +306,8 @@ export const takeLeaves = async (doctorId: number, newTime: any) => {
     });
     return leaves;
   } catch (error: any) {
-    if (error instanceof InternalServerError) {
-      throw new InternalServerError(error.message);
-    }
-    if (error instanceof NotFoundError) {
-      throw new NotFoundError(error.message);
+    if (error instanceof BadRequestError || error instanceof NotFoundError || error instanceof InternalServerError) {
+      throw error;
     }
     console.log(error);
     throw new InternalServerError('Error while fetching Doctor');
