@@ -5,7 +5,7 @@ export const scheduleAppointmentReminder = async (
     reminderType: "day-before" | "two-hour",
     reminderTime: Date
 ) => {
-    const delay = reminderTime.getTime() - Date.now();
+    const delay = Math.max(0, reminderTime.getTime() - Date.now());
     await appointmentQueue.add(
         "appointment-reminder",
         {
