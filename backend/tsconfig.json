@@ -13,7 +13,7 @@
     "lib": ["esnext"],
     "types": ["node"],
     "paths": {
-      "@db/*": ["./src/database/generated/*"] // 2. Creates a clean custom alias path
+      "@db/*": ["./src/databases/generated/*"] // 2. Creates a clean custom alias path
     },
     // For nodejs:
     // "lib": ["esnext"],
