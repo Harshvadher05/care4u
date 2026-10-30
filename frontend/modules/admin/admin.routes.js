@@ -58,7 +58,7 @@ adminRoutes.get("/doctors", checkToken, async (req, res) => {
                 : "";
 
         const response = await fetch(
-            `http://localhost:3004/api/v1/admin/getDoctorsDetail?searchString=${encodeURIComponent(searchString)}`,
+            `${process.env.API_BASE_URL || "http://localhost:3004/api/v1"}/admin/getDoctorsDetail?searchString=${encodeURIComponent((searchString || "").trim())}`,
             {
                 method: "GET",
                 headers: {
