@@ -28,7 +28,7 @@
                 //     delete data.middleName;
                 // }
 
-                const response = await fetch('http://localhost:3004/api/v1/patient/register', {
+                const response = await fetch((window.API_BASE_URL || 'http://localhost:3004/api/v1') + '/patient/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
