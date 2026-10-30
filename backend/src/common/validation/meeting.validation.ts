@@ -14,7 +14,7 @@ export const CreateMeetingSchema = z.object({
   doctorId: z.coerce.bigint(),
 
   patientId: z.coerce.bigint(),
-  joinUrl: z.coerce.string().trim().optional(),
-  startUrl: z.coerce.string().trim().optional(),
-  password: z.coerce.string().trim().optional(),
+  joinUrl: z.string().trim(),
+  startUrl: z.string().trim(),
+  password: z.string().trim(),
 });
