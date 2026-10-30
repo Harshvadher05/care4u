@@ -20,7 +20,7 @@ form.addEventListener('submit', async (e) => {
     `;
 
     try {
-        const response = await fetch('http://localhost:3004/api/v1/auth/forgot-password', {
+        const response = await fetch((window.API_BASE_URL || 'http://localhost:3004/api/v1') + '/auth/forgot-password', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email })
