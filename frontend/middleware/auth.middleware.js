@@ -37,9 +37,9 @@ async function handleRefreshToken(req, res, next) {
     }
 
     // Set new cookies (NOT httpOnly so that client-side scripts can read them)
-    res.cookie('accessToken', result.data.accessToken, { path: '/' });
+    res.cookie('accessToken', result.data.accessToken, { path: '/', sameSite: 'lax' });
     if (result.data.refreshToken) {
-      res.cookie('refreshToken', result.data.refreshToken, { path: '/' });
+      res.cookie('refreshToken', result.data.refreshToken, { path: '/', sameSite: 'lax' });
     }
 
     // Verify the new access token to attach user data
