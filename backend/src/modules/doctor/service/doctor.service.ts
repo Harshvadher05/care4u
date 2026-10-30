@@ -14,12 +14,12 @@ import type {
 import * as argon2 from 'argon2';
 import { createCredential } from '../../auth/service/auth.service.js';
 
-export const updateDoctor = async (doctorId: number, newDoctorValue: any) => {
+export const updateDoctor = async (doctorId: number | bigint, newDoctorValue: any) => {
   try {
     return await prisma.$transaction(async (tx) => {
       //update a doctor
       const doctor = await tx.doctor.update({
-        where: { id: doctorId },
+        where: { id: BigInt(doctorId) },
         data: {
           firstName: newDoctorValue.firstName,
           middleName: newDoctorValue.middleName ?? null,
