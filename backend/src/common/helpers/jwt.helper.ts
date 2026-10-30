@@ -85,7 +85,7 @@ export const verifyToken = (token: string): JwtPayload => {
     }
     return decodedToken;
   } catch (error: any) {
-    if (error.message == 'jwt expired') {
+    if (error.name === 'TokenExpiredError' || error.message === 'jwt expired') {
       throw new TokenExpiredError('Token is expired');
     }
     throw new InvalidTokenError(error.message);
@@ -101,7 +101,7 @@ export const verifyRefreshToken = (token: string): JwtPayload => {
     }
     return decodedToken;
   } catch (error: any) {
-    if (error.message == 'jwt expired') {
+    if (error.name === 'TokenExpiredError' || error.message === 'jwt expired') {
       throw new TokenExpiredError('Refresh token is expired');
     }
     throw new InvalidTokenError(error.message);
