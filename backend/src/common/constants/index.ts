@@ -4,10 +4,11 @@ export const ROLE = {
   DOCTOR: 'DOCTOR',
   PATIENT: 'PATIENT',
   SUPER_ADMIN: 'SUPER_ADMIN',
-};
+} as const;
 
+export type RoleType = typeof ROLE[keyof typeof ROLE];
 
-export const DAYS = [ 
+export const DAYS = [
   "SUNDAY",
   "MONDAY",
   "TUESDAY",
@@ -15,6 +16,8 @@ export const DAYS = [
   "THURSDAY",
   "FRIDAY",
   "SATURDAY"
-];
+] as const;
+
+export type DayType = typeof DAYS[number];
 
 export const CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
