@@ -3,7 +3,7 @@ import { createApp } from './app.js';
 
 function bootstrap() {
   const app = createApp();
-  const port = process.env.PORT;
+  const port = process.env.PORT || 3004;
 
   app.listen(port, () => {
     console.log(`http://localhost:${port}`);
