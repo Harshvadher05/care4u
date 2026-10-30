@@ -4,6 +4,7 @@ import { addressSchema } from "./address.validation.js";
 export const CreateHospitalSchema = z.object({
   branchName: z
     .string()
+    .trim()
     .min(2, "Branch name must be at least 2 characters")
     .max(100, "Branch name is too long"),
 
@@ -24,17 +25,21 @@ export const CreateHospitalSchema = z.object({
 export const UpdateHospitalSchema = z.object({
   branchName: z
     .string()
+    .trim()
     .min(2, "Branch name must be at least 2 characters")
-    .max(100, "Branch name is too long"),
+    .max(100, "Branch name is too long")
+    .optional(),
 
   photo: z
-    .string(),
+    .string()
+    .optional(),
 
   hospitalGroupId: z
     .union([
       z.bigint(),
       z.string().regex(/^\d+$/).transform(BigInt),
-    ]),
+    ])
+    .optional(),
 
-  address: addressSchema,
+  address: addressSchema.optional(),
 });
