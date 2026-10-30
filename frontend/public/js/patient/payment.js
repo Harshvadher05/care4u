@@ -380,7 +380,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (value.length > 3) value = value.slice(0, 4);
       
       e.target.value = value;
-      console.log(value);
 
       // Directly mirror the value to the card display
       if (mockCardCvv) {
