@@ -43,8 +43,8 @@ async function apiFetch(endpoint, options = {}) {
         });
 
         // Auto logout on authorization failures
-        if (response.status === 401 || response.status === 403) {
-            console.warn("API Authorization failure (401/403). Clearing session...");
+        if (response.status === 401) {
+            console.warn("API Unauthorized (401). Clearing session...");
             deleteAllCookies();
             window.location.href = "/auth/login";
             return null;
