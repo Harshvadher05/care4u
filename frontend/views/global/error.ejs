@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title><%= title %> | MedCentral Portal</title>
+    <title><%= locals.title || 'An Error Occurred' %> | Care4U</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
@@ -23,7 +23,7 @@
     <header class="w-full h-16 bg-surface-container-lowest shadow-sm flex items-center justify-between px-margin-desktop z-10">
         <div class="flex items-center gap-md">
             <span class="material-symbols-outlined text-primary text-[28px]">medical_services</span>
-            <span class="font-headline-sm text-headline-sm font-bold text-primary">MedCentral Portal</span>
+            <span class="font-headline-sm text-headline-sm font-bold text-primary">Care4U</span>
         </div>
         <div class="flex items-center gap-md">
             <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="/">Home</a>
@@ -39,9 +39,10 @@
                 <div class="absolute w-44 h-44 rounded-full bg-error-container/10 animate-ping"></div>
                 <div class="absolute w-36 h-36 rounded-full bg-primary-fixed-dim/10 animate-pulse"></div>
                 <div class="w-28 h-28 rounded-2xl bg-surface-container flex items-center justify-center border border-outline-variant shadow-inner relative z-10">
-                    <% if (statusCode === 404) { %>
+                    <% const code = Number(locals.statusCode) || 500; %>
+                    <% if (code === 404) { %>
                         <span class="material-symbols-outlined text-[64px] text-primary">search_off</span>
-                    <% } else if (statusCode === 403) { %>
+                    <% } else if (code === 403) { %>
                         <span class="material-symbols-outlined text-[64px] text-error">gpp_bad</span>
                     <% } else { %>
                         <span class="material-symbols-outlined text-[64px] text-error">warning</span>
@@ -52,13 +53,13 @@
             <!-- Error Info -->
             <div class="space-y-sm">
                 <h1 class="font-display-lg text-display-lg font-extrabold error-code-gradient tracking-tight leading-none">
-                    <%= statusCode %>
+                    <%= locals.statusCode || 500 %>
                 </h1>
                 <h2 class="font-headline-md text-headline-md text-on-surface font-bold">
                     <%= title %>
                 </h2>
                 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-md mx-auto leading-relaxed">
-                    <%= message %>
+                    <%= locals.message || 'Something went wrong on our end. Please try again later.' %>
                 </p>
             </div>
 
