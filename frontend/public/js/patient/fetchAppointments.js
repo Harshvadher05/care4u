@@ -389,7 +389,8 @@ function renderAppointments(appointments) {
 
     tbody.innerHTML = appointments.map(appt => {
         const safeStartTime = (appt.appointmentStartTime || '').replace(' ', 'T');
-        const apptTime = safeStartTime ? new Date(safeStartTime) : new Date(0);
+        const parsedTime = safeStartTime ? new Date(safeStartTime) : null;
+        const apptTime = (parsedTime && !isNaN(parsedTime.getTime())) ? parsedTime : new Date(0);
         const now = new Date();
         
         // Calculate the difference in milliseconds
