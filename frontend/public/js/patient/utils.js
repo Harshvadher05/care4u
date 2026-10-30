@@ -79,7 +79,8 @@ function buildClinicDateTime(dateStr, timeStr) {
         .map((part) => Number(part) || 0);
 
     const safeDate = String(dateStr).slice(0, 10);
-    return new Date(`${safeDate}T${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:00+05:30`);
+    const d = new Date(`${safeDate}T${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:00`);
+    return isNaN(d.getTime()) ? null : d;
 }
 
 // Bind global logout button event
