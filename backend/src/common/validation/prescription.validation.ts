@@ -9,9 +9,7 @@ export const CreatePrescriptionSchema = z.object({
 
   appointmentId: z
     .coerce
-    .number()
-    .int()
-    .positive("Appointment ID must be a positive number"),
+    .bigint({ message: "Appointment ID must be a valid number" }),
 
   attachments: z
     .array(CreateAttachmentSchema.omit({ prescriptionId: true }))
