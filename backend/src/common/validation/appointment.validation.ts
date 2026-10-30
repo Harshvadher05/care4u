@@ -7,13 +7,13 @@ export const CreateAppointmentSchema = z
     appointmentStartTime: z.coerce.date(),
 
     patientId: z.coerce.bigint().optional(),
-    type: z.enum(["IN_PERSON","ONLINE"]),
+    type: z.enum(["IN_PERSON", "ONLINE"]),
     bookedBy: z.enum(["SELF", "STAFF"]),
 
     doctorId: z.coerce.bigint(),
     hospitalId: z.coerce.bigint(),
 
-    paidBy: z.string().optional(),
+    paidBy: z.string().trim().optional(),
 
     payment: CreatePaymentSchema.optional(),
   })
