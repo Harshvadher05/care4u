@@ -1,8 +1,8 @@
 /**
- * -module/doctor/validation/doctor.validataion.ts - Doctor joi schemas
+ * -module/doctor/validation/doctor.validation.ts - Doctor Zod schemas
  *
- *  Define Joi validation schema for Doctor endpoint datavalidation
- *  Use with the Validate() middleware in route definations.
+ *  Define Zod validation schema for Doctor endpoint data validation
+ *  Use with the Validate() middleware in route definitions.
  *
  */
 
