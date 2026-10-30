@@ -391,7 +391,7 @@ export const updateAdminProfile = async (adminId: bigint, adminData: IUpdateAdmi
 
 export const getAdminId = async (credentialId: bigint) => {
   try {
-    if (!credentialId) throw new NotFoundError('Error in getadminId : Credentail Id not found.');
+    if (!credentialId) throw new NotFoundError('Error in getadminId : Credential Id not found.');
     const adminId = await prisma.admin.findUnique({
       where: {
         credentialId,
@@ -406,9 +406,9 @@ export const getAdminId = async (credentialId: bigint) => {
     return adminId.id;
   } catch (error) {
     if (error instanceof NotFoundError) {
-      throw new NotFoundError(error.message);
+      throw error;
     }
-    throw new DatabaseError('Error while finding admin id')
+    throw new DatabaseError('Error while finding admin id');
   }
 };
 
