@@ -773,7 +773,7 @@ export const updatePatientProfileService = async (
     if (body.middleName !== undefined) updateData.middleName = body.middleName;
     if (body.lastName) updateData.lastName = body.lastName;
     if (body.gender) updateData.gender = body.gender as Gender;
-    if (body.dateOfBirth) updateData.dateOfBirth = new Date(body.dateOfBirth);
+    if (body.dateOfBirth && !isNaN(Date.parse(body.dateOfBirth))) updateData.dateOfBirth = new Date(body.dateOfBirth);
     if (body.bloodGroup) updateData.bloodGroup = body.bloodGroup as BloodGroup;
 
     if (file) {
