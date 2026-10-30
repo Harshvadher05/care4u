@@ -20,7 +20,7 @@ export const register = async (data: IHospital,tx: any) => {
 
 export const findById = async (id: bigint) => {
     try {
-        const exisitingHospital = await prisma.hospital.findUnique({
+        const existingHospital = await prisma.hospital.findUnique({
             where: {
                 id,
                 isActive: true
@@ -44,13 +44,13 @@ export const findById = async (id: bigint) => {
                 },
             }
         });
-        if(!exisitingHospital) {
+        if(!existingHospital) {
             throw new NotFoundError('Hospital with given id not found');
         }
-        return exisitingHospital;
+        return existingHospital;
     } catch (error) {
         if(error instanceof NotFoundError) {
-            throw new NotFoundError(error.message)
+            throw error;
         }
         console.error(error);
         throw new DatabaseError('Error while finding the hospital');
@@ -59,7 +59,7 @@ export const findById = async (id: bigint) => {
 
 export const findByName = async (name: string) => {
     try {
-        const exisitingHospital = await prisma.hospital.findMany({
+        const existingHospital = await prisma.hospital.findMany({
             where: {
                 branchName: {
                     contains: name,
@@ -79,7 +79,7 @@ export const findByName = async (name: string) => {
                 }
             }
         });
-        return exisitingHospital;
+        return existingHospital;
     } catch (error) {
         console.error(error);
         throw new DatabaseError('Error while fetching hospitals')
