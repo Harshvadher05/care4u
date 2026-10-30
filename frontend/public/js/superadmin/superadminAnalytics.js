@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Fetch raw data from backend and run dashboard engines
 async function fetchAnalyticsData() {
     try {
-        const response = await fetch('http://localhost:3004/api/v1/hospital-group', {
+        const response = await fetch((window.API_BASE_URL || 'http://localhost:3004/api/v1') + '/hospital-group', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -558,7 +558,7 @@ async function triggerAlertAction(actionType, target) {
         });
         if (result.isConfirmed) {
             try {
-                const response = await fetch(`http://localhost:3004/api/v1/hospital-group/${target}`, {
+                const response = await fetch(`${(window.API_BASE_URL || "http://localhost:3004/api/v1")}/hospital-group/${target}`, {
                     method: 'PATCH',
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
