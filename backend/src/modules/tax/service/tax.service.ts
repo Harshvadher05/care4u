@@ -1,5 +1,5 @@
 import { DatabaseError, NotFoundError } from "../../../common/handlers/error.handlers.js";
-import prisma from "../../../config/prisma.js"
+import prisma from "../../../config/prisma.js";
 
 export const findByCountry = async (country: string) => {
     try {
@@ -8,15 +8,15 @@ export const findByCountry = async (country: string) => {
                 country
             }
         });
-        if(!taxData) {
+        if (!taxData) {
             throw new NotFoundError('Invalid Country');
         }
         return taxData;
     } catch (error) {
-        if(error instanceof NotFoundError) {
-            throw new NotFoundError(error.message);
+        if (error instanceof NotFoundError) {
+            throw error;
         }
         console.error(error);
         throw new DatabaseError('Error while finding tax rate');
     }
-}
+};
