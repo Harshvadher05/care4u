@@ -67,14 +67,14 @@ export const updateDoctor = async (doctorId: number | bigint, newDoctorValue: an
   }
 };
 
-export const getDoctorById = async (doctorId: number) => {
+export const getDoctorById = async (doctorId: number | bigint) => {
   try {
     if (!doctorId) {
-      throw new InternalServerError('Doctor Id is require');
+      throw new BadRequestError('Doctor ID is required');
     }
     const doctor = await prisma.doctor.findUnique({
       where: {
-        id: doctorId,
+        id: BigInt(doctorId),
       },
       include: {
         credential: true,
