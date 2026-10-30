@@ -116,14 +116,14 @@ export const getDoctorId = async (credentialId: bigint) => {
   }
 };
 
-export const getAllAppointment = async (doctorId: number) => {
+export const getAllAppointment = async (doctorId: number | bigint) => {
   try {
     if (!doctorId) {
       throw new BadRequestError('Doctor id is required!');
     }
     const appointments = await prisma.appointment.findMany({
       where: {
-        doctorId,
+        doctorId: BigInt(doctorId),
       },
       include: {
         patient: {
