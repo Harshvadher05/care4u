@@ -29,7 +29,8 @@ async function startZoomCall(btn, appointmentId) {
         });
         const result = await response.json();
         if (result.success) {
-            window.open(result.meeting.startUrl, '_blank');
+            const url = result.meeting?.startUrl || result.data?.startUrl;
+            if (url) window.open(url, '_blank');
             window.location.reload();
         } else {
             alert('Failed to start Zoom call: ' + result.message);
