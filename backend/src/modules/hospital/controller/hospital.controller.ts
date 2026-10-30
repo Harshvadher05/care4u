@@ -145,7 +145,7 @@ export const update = async (req: Request, res: Response) => {
             city: result.data.address.city,
             country: result.data.address.country,
             pincode: result.data.address.pincode,
-            state: result.data.address.pincode,
+            state: result.data.address.state,
             hospitalId: Number(id),
         }
         await prisma.$transaction(async (tx) => {

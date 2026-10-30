@@ -27,19 +27,16 @@ export const UpdateHospitalSchema = z.object({
     .string()
     .trim()
     .min(2, "Branch name must be at least 2 characters")
-    .max(100, "Branch name is too long")
-    .optional(),
+    .max(100, "Branch name is too long"),
 
   photo: z
-    .string()
-    .optional(),
+    .string(),
 
   hospitalGroupId: z
     .union([
       z.bigint(),
       z.string().regex(/^\d+$/).transform(BigInt),
-    ])
-    .optional(),
+    ]),
 
-  address: addressSchema.optional(),
+  address: addressSchema,
 });
