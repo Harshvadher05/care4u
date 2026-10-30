@@ -13,7 +13,7 @@ export const createAccessToken = (payload: IJwtPayload, time: number): string =>
     const token = jwt.sign(payload, secretKey, { expiresIn: 60 * time });
     return token;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw new InternalServerError('Error while creating token');
   }
 };
@@ -24,7 +24,7 @@ export const createRefreshToken = (email: string): string => {
     const token = jwt.sign({email}, secretKey, { expiresIn: 60 * 60 * 24 * 15 });
     return token;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw new InternalServerError('Error while creating token');
   }
 }
@@ -36,7 +36,7 @@ export const createSvgToken = (svgText: string): string => {
     const token = jwt.sign({ text: svgText }, secretKey, { expiresIn: 60 * 5 });
     return token;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw new InternalServerError('Error while creating token');
   }
 };
@@ -54,7 +54,7 @@ export const createOtpToken = (email: string, otp: string): string => {
     );
     return token;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw new InternalServerError('Error while creating token');
   }
 };
@@ -71,7 +71,7 @@ export const createResetToken = (email: string): string => {
     );
     return token;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw new InternalServerError('Error while creating token');
   }
 };
