@@ -28,7 +28,7 @@ type SearchDoctorFilters = {
 export const getPatientId = async (credentialId: bigint | undefined) => {
   try {
     if (!credentialId) {
-      throw new InternalServerError('patient id is required');
+      throw new BadRequestError('Credential ID is required');
     }
 
     const patient = await prisma.patient.findUnique({
