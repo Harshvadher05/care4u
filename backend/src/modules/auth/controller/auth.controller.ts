@@ -88,7 +88,7 @@ export const login = async (req: Request, res: Response) => {
     };
     res.status(200).json(response);
   } catch (error: any) {
-    console.log(error);
+    console.error(error);
     response = {
       status: error.statusCode || 500,
       message: error.message || 'Internal Server Error',
@@ -122,7 +122,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
     };
     res.status(200).json(response);
   } catch (error: any) {
-    console.log(error);
+    console.error(error);
     response = {
       status: error.statusCode || 500,
       message: error.message || 'Internal Server Error',
@@ -154,7 +154,7 @@ export const verifyOtp = async (req: Request, res: Response) => {
     };
     res.status(200).json(response);
   } catch (error: any) {
-    console.log(error);
+    console.error(error);
     response = {
       status: error.statusCode || 500,
       message: error.message || 'Internal Server Error',
@@ -202,7 +202,7 @@ export const resetPassword = async (req: Request, res: Response) => {
     };
     res.status(200).json(response);
   } catch (error: any) {
-    console.log(error);
+    console.error(error);
     response = {
       status: error.statusCode || 500,
       message: error.message || 'Internal Server Error',
@@ -237,11 +237,9 @@ export const refreshToken = async (req: Request, res: Response) => {
       const patientId = await patientService.getPatientId(user.id);
       userId = patientId;
     } else if(user.role == 'ADMIN') {
-      console.log('here');
       const adminData = await adminService.getAdminId(user.id);
       userId = adminData;
     } else if (user.role == 'DOCTOR') {
-      console.log('doctor');
       const doctorId = await doctorService.getDoctorId(user.id);
       userId = doctorId;
     } else if (user.role == 'STAFF') {
@@ -273,7 +271,7 @@ export const refreshToken = async (req: Request, res: Response) => {
     };
     res.status(200).json(response);
   } catch (error: any) {
-    console.log(error);
+    console.error(error);
     response = {
       status: error.statusCode || 500,
       message: error.message || 'Internal Server Error',
@@ -304,7 +302,7 @@ export const logout = async (req: Request, res: Response) => {
     };
     res.status(200).json(response);
   } catch (error: any) {
-    console.log(error);
+    console.error(error);
     response = {
       status: error.statusCode || 500,
       message: error.message || 'Internal Server Error',
