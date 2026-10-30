@@ -33,7 +33,7 @@ export const findByAppointmentId = async (appointmentId: bigint) => {
         return meeting;
     } catch (error) {
         console.error(error);
-        throw new DatabaseError('Error while creating meeting');
+        throw new DatabaseError('Error while finding meeting');
     }
 }
 
