@@ -20,8 +20,6 @@ async function loadAppointments() {
         const response = await fetch(`/staff/dashboard/appointments?${params.toString()}`);
         const result = await response.json();
         
-        console.log('Appointments fetched:', result); // DEBUG
-        
         if (result.success && result.data) {
             const appts = result.data;
             countSpan.textContent = `(${appts.length})`;
