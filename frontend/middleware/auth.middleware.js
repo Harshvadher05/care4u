@@ -17,7 +17,7 @@ async function handleRefreshToken(req, res, next) {
   }
 
   try {
-    const response = await fetch("http://localhost:3004/api/v1/auth/refresh-token", {
+    const response = await fetch((process.env.API_BASE_URL || 'http://localhost:3004/api/v1') + '/auth/refresh-token', {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${refreshToken}`,
