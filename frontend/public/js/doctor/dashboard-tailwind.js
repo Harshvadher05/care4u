@@ -1,4 +1,5 @@
-tailwind.config = {
+window.tailwind = window.tailwind || {};
+window.tailwind.config = {
     theme: {
         extend: {
             fontFamily: { sans: ['Inter', 'sans-serif'] },
@@ -12,4 +13,4 @@ tailwind.config = {
             }
         }
     }
-}
+};
