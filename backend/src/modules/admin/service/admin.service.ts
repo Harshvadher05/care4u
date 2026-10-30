@@ -14,7 +14,7 @@ import type { ICreateCredential } from '../../auth/interface/auth.interface.js';
 export const isAlreadyAdmin = async (email: string) => {
   try {
     if (!email) {
-      throw new InternalServerError('Error while fetching user as email is not available');
+      throw new BadRequestError('Email is required');
     }
     const user = await prisma.userCredential.findUnique({
       where: {
@@ -27,11 +27,8 @@ export const isAlreadyAdmin = async (email: string) => {
     }
     return false;
   } catch (error) {
-    if (error instanceof InternalServerError) {
-      throw new InternalServerError(error.message);
-    }
-    if (error instanceof ResourceAlreadyExistError) {
-      throw new ResourceAlreadyExistError(error.message);
+    if (error instanceof BadRequestError || error instanceof ResourceAlreadyExistError || error instanceof InternalServerError) {
+      throw error;
     }
     throw new InternalServerError('Error while checking isAlreadyAdmin');
   }
