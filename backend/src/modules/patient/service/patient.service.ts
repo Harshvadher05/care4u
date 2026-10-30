@@ -87,8 +87,8 @@ export const updateProfilePhoto = async (id: bigint, url: string) => {
 };
 export const searchDoctorsForPatient = async (filters: SearchDoctorFilters) => {
   try {
-    const page = filters.page && filters.page > 0 ? filters.page : 1;
-    const limit = filters.limit && filters.limit > 0 ? filters.limit : 10;
+    const page = Math.max(1, Number(filters.page) || 1);
+    const limit = Math.min(100, Math.max(1, Number(filters.limit) || 10));
     const skip = (page - 1) * limit;
 
     const where: any = {
