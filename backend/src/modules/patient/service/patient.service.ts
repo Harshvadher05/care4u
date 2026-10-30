@@ -49,7 +49,7 @@ export const getPatientId = async (credentialId: bigint | undefined) => {
   }
 };
 
-export const createPatient = async (tx: any, data: ICreatePatient) => {
+export const createPatient = async (tx: { patient: { create: Function } }, data: ICreatePatient) => {
   return tx.patient.create({
     data: {
       firstName: data.firstName,
