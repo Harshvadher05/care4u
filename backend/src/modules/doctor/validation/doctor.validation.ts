@@ -19,7 +19,7 @@ export const DoctorDegreeSchema = z.object({
   passingYear: z
     .number()
     .int()
-    .min(1900, 'Invalid passing year')
+    .min(1950, 'Passing year must be 1950 or later')
     .max(new Date().getFullYear(), 'Passing year cannot be in the future'),
 });
 
