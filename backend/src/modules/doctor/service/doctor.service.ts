@@ -161,7 +161,7 @@ export const getAllAppointment = async (doctorId: number | bigint) => {
   }
 };
 
-export const getUpComingLeaves = async (doctorId: number) => {
+export const getUpComingLeaves = async (doctorId: number | bigint) => {
   try {
     if (!doctorId) {
       throw new BadRequestError('Doctor id is required!');
@@ -170,7 +170,7 @@ export const getUpComingLeaves = async (doctorId: number) => {
     today.setHours(0, 0, 0, 0);
     const leave = await prisma.leaves.findMany({
       where: {
-        doctorId,
+        doctorId: BigInt(doctorId),
         leaveDate: {
           gte: today, // greater than or equal to today
         },
@@ -270,7 +270,7 @@ export const getSchedule = async (doctorId: bigint) => {
   }
 };
 
-export const updateSchedule = async (doctorId: number, newTime: any) => {
+export const updateSchedule = async (doctorId: number | bigint, newTime: any) => {
   try {
     const schedule = await prisma.schedule.updateMany({
       where: {
@@ -294,7 +294,7 @@ export const updateSchedule = async (doctorId: number, newTime: any) => {
   }
 };
 
-export const takeLeaves = async (doctorId: number, newTime: any) => {
+export const takeLeaves = async (doctorId: number | bigint, newTime: any) => {
   try {
     const leaves = await prisma.leaves.create({
       data: {
