@@ -46,7 +46,7 @@ export const getCounts = async (hospitalGroupId: bigint) => {
     }
 
     const [doctorCount, availableDoctorCount, staffCount, appointmentsCount] = await Promise.all([
-      await prisma.doctor.count({
+      prisma.doctor.count({
         where: {
           hospital: {
             hospitalGroupId: hospitalGroupId,
@@ -54,7 +54,7 @@ export const getCounts = async (hospitalGroupId: bigint) => {
         },
       }),
 
-      await prisma.doctor.count({
+      prisma.doctor.count({
         where: {
           hospital: {
             hospitalGroupId: hospitalGroupId,
@@ -67,7 +67,7 @@ export const getCounts = async (hospitalGroupId: bigint) => {
         },
       }),
 
-      await prisma.staff.count({
+      prisma.staff.count({
         where: {
           hospital: {
             hospitalGroupId: hospitalGroupId,
@@ -75,7 +75,7 @@ export const getCounts = async (hospitalGroupId: bigint) => {
         },
       }),
 
-      await prisma.appointment.count({
+      prisma.appointment.count({
         where: {
           hospital: {
             hospitalGroupId: hospitalGroupId,
