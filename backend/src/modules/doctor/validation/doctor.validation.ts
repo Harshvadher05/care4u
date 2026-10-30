@@ -47,7 +47,7 @@ export const RegisterDoctorSchema = z.object({
 
   charges: z.number().positive('Charges must be greater than 0'),
 
-  slotDuration: z.number().int().positive().optional(),
+  slotDuration: z.number().int().min(5, 'Slot duration must be at least 5 minutes').max(120, 'Slot duration cannot exceed 120 minutes').optional(),
 
   hospitalId: z.coerce.bigint(),
 
