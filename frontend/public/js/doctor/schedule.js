@@ -8,7 +8,7 @@ const eveningInputs = document.getElementById('eveningInputs');
 const eveningStartTime = document.getElementById('eveningStartTime');
 const eveningEndTime = document.getElementById('eveningEndTime');
 
-toggleMorning.addEventListener('change', (e) => {
+if (toggleMorning) toggleMorning.addEventListener('change', (e) => {
     if(e.target.checked) {
         morningInputs.classList.remove('opacity-50', 'pointer-events-none');
     } else {
@@ -18,7 +18,7 @@ toggleMorning.addEventListener('change', (e) => {
     }
 });
 
-toggleEvening.addEventListener('change', (e) => {
+if (toggleEvening) toggleEvening.addEventListener('change', (e) => {
     if(e.target.checked) {
         eveningInputs.classList.remove('opacity-50', 'pointer-events-none');
     } else {
@@ -28,7 +28,7 @@ toggleEvening.addEventListener('change', (e) => {
     }
 });
 
-document.getElementById('scheduleForm').addEventListener('submit', async (e) => {
+document.getElementById('scheduleForm')?.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const btn = e.target.querySelector('button[type="submit"]');
