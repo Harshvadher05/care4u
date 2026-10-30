@@ -15,7 +15,7 @@ export const createCalendarConnection = async (data: ICreateCalendarConnection) 
                 doctorId: data.doctorId,
             }
         });
-        return createdConnection
+        return createdConnection;
     } catch (error) {
         console.error(error);
         throw new DatabaseError('Error while creating connection');
