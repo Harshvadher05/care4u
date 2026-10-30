@@ -42,7 +42,7 @@ export const getPatientId = async (credentialId: bigint | undefined) => {
     return patient.id;
   } catch (error) {
     if (error instanceof NotFoundError) {
-      throw new NotFoundError(error.message);
+      throw error;
     }
     console.error(error);
     throw new DatabaseError('Error while finding user');
@@ -79,7 +79,7 @@ export const updateProfilePhoto = async (id: bigint, url: string) => {
     return updatedProfile;
   } catch (error) {
     if (error instanceof NotFoundError) {
-      throw new NotFoundError(error.message);
+      throw error;
     }
     console.error(error);
     throw new InternalServerError('Error while updating profile photo');
@@ -285,7 +285,7 @@ export const getDoctorDetailsForPatient = async (doctorId: string) => {
     return doctor;
   } catch (error) {
     if (error instanceof NotFoundError) {
-      throw new NotFoundError(error.message);
+      throw error;
     }
     if (error instanceof InternalServerError) {
       throw new InternalServerError(error.message);
@@ -684,7 +684,7 @@ export const getAvailableSlots = async (doctorId: string, date: string) => {
 
     return slots;
   } catch (error) {
-    if (error instanceof NotFoundError) throw new NotFoundError(error.message);
+    if (error instanceof NotFoundError) throw error;
     if (error instanceof BadRequestError) throw new BadRequestError(error.message);
     console.error(error);
     throw new DatabaseError('Error while generating slots');
