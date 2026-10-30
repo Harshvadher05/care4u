@@ -49,7 +49,9 @@ export const findDoctorAppointments = async (
       };
     })() : {};
 
-    // Prisma stores IDs as BigInt — coerce the string from query params
+    if (!/^\d+$/.test(String(userID).trim())) {
+      throw new BadRequestError('Invalid user ID');
+    }
     const idAsBigInt = BigInt(userID);
     const whereCondition =
       type === 'doctor'
