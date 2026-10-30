@@ -84,7 +84,7 @@ export const findDoctorAppointments = async (
 
     return (appointments ?? []).map(mapAppointmentStatus);
   } catch (error: any) {
-    console.log(error);
+    console.error(error);
 
     if (error instanceof BadRequestError) {
       throw error;

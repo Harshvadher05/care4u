@@ -15,8 +15,7 @@ export const scheduleMeetingLinkSender = async (
     if (isMeetingTimePassed < 0) {  
         return;
     }
-    console.log('hi');
-    
+        
     await meetingQueue.add(
         "meeting-link",
         {
