@@ -2,8 +2,6 @@ document.getElementById("login-form").addEventListener("submit", handleLogin);
 
 async function handleLogin(e) {
     e.preventDefault();
-    console.log('login js loaded!!');
-
     const errorContainer = document.getElementById("error-message");
     const loginBtn = document.getElementById("login-btn");
 
@@ -13,8 +11,6 @@ async function handleLogin(e) {
 
     let identity = document.getElementById("identity").value.trim();
     const password = document.getElementById("password").value;
-
-    console.log(identity, password);
 
     // Basic Validation
     if (!identity || !password) {
