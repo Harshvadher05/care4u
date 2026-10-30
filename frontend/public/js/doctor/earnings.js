@@ -13,10 +13,10 @@ function downloadMonthlyInvoice() {
     }
 
     const urlParams = new URLSearchParams(window.location.search);
-    const doctorId  = urlParams.get('doctorId');
+    const doctorId = urlParams.get('doctorId');
 
-    let query = `?month=${selectedMonth}`;
-    if (doctorId) query += `&doctorId=${doctorId}`;
+    let query = `?month=${encodeURIComponent(selectedMonth)}`;
+    if (doctorId) query += `&doctorId=${encodeURIComponent(doctorId)}`;
 
     window.open(`/doctor/earnings/download-monthly${query}`, '_blank');
 }
