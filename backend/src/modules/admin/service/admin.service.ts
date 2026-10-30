@@ -37,9 +37,7 @@ export const isAlreadyAdmin = async (email: string) => {
 export const getCounts = async (hospitalGroupId: bigint) => {
   try {
     if (!hospitalGroupId) {
-      throw new InternalServerError(
-        'Error while fetching count as hospital group Id is not present',
-      );
+      throw new BadRequestError('Hospital Group ID is required');
     }
 
     const [doctorCount, availableDoctorCount, staffCount, appointmentsCount] = await Promise.all([
