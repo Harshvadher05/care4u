@@ -12,8 +12,14 @@ export const checkToken = (req: Request, res: Response, next: NextFunction): voi
       return;
     }
 
+    const secret = process.env.ACCESS_JWT_SECRET;
+    if (!secret) {
+      res.status(500).json({ message: 'Internal Server Error - Auth secret not configured' });
+      return;
+    }
+
     // Decode and verify token
-    const decoded = jwt.verify(token, process.env.ACCESS_JWT_SECRET as string) as {
+    const decoded = jwt.verify(token, secret) as {
       userId: bigint;
       doctorId?: bigint;
       email?: string;
