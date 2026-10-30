@@ -49,7 +49,7 @@ function switchTab(tab) {
 
 async function fetchDirectory() {
     try {
-        const response = await fetch('http://localhost:3004/api/v1/hospital-group', {
+        const response = await fetch((window.API_BASE_URL || 'http://localhost:3004/api/v1') + '/hospital-group', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -171,7 +171,7 @@ async function handleGroupSubmit(event) {
     const logo = document.getElementById('groupLogo').value;
 
     try {
-        const response = await fetch('http://localhost:3004/api/v1/hospital-group/register', {
+        const response = await fetch((window.API_BASE_URL || 'http://localhost:3004/api/v1') + '/hospital-group/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -231,7 +231,7 @@ async function handleAdminSubmit(event) {
     };
 
     try {
-        const response = await fetch('http://localhost:3004/api/v1/admin/registerAdmin', {
+        const response = await fetch((window.API_BASE_URL || 'http://localhost:3004/api/v1') + '/admin/registerAdmin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -281,7 +281,7 @@ async function toggleGroupStatus(groupId, action) {
 
     if (!confirmResult.isConfirmed) return;
 
-    const url = `http://localhost:3004/api/v1/hospital-group/${groupId}`;
+    const url = `${(window.API_BASE_URL || "http://localhost:3004/api/v1")}/hospital-group/${groupId}`;
     const method = action === 'deactivate' ? 'DELETE' : 'PATCH';
 
     try {
