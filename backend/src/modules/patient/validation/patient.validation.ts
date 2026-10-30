@@ -2,23 +2,23 @@ import { z } from "zod";
 import { Gender, BloodGroup } from "../../../databases/generated/client.js";
 
 export const registerPatientSchema = z.object({
-  firstName: z.string({ error: "First name is required" })
+  firstName: z.string({ error: "First name is required" }).trim()
     .min(2, "First name must be at least 2 characters")
     .max(50, "First name must not exceed 50 characters"),
 
-  middleName: z.string()
+  middleName: z.string().trim()
     .min(2, "Middle name must be at least 2 characters")
     .max(50, "Middle name must not exceed 50 characters")
     .optional(),
 
-  lastName: z.string({ error: "Last name is required" })
+  lastName: z.string({ error: "Last name is required" }).trim()
     .min(2, "Last name must be at least 2 characters")
     .max(50, "Last name must not exceed 50 characters"),
 
-  email: z.string({ error: "Email is required" })
+  email: z.string({ error: "Email is required" }).trim()
     .email("Invalid email address"),
 
-  mobile: z.string({ error: "Mobile is required" })
+  mobile: z.string({ error: "Mobile is required" }).trim()
     .regex(/^\+?[1-9]\d{9,14}$/, "Invalid mobile number"),
 
   dateOfBirth: z.string({ error: "Date of birth is required" })
