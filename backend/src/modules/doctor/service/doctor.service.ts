@@ -37,7 +37,7 @@ export const updateDoctor = async (doctorId: number | bigint, newDoctorValue: an
         where: { doctorId: doctor.id },
       });
       const new_doctor_degrees = await tx.degree.createMany({
-        data: newDoctorValue.degrees.map((degree: IDoctorDegreeDto[]) => ({
+        data: newDoctorValue.degrees.map((degree: IDoctorDegreeDto) => ({
           ...degree,
           doctorId: doctor.id,
         })),
